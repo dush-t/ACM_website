@@ -1,0 +1,13 @@
+#Python
+*.pyc
+**.pyc
+
+# Cache files
+__pycache__/
+*.py[cod]
+
+#database
+backend/db.sqlite3
+
+#Test image files
+media/*
