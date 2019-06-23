@@ -1,5 +1,13 @@
 const positions = positionNames; // from page_data file.
 
+descriptionFormFields = [
+    ['title', 'text'],
+    ['content', 'textarea'],
+    ['read_more', 'textarea'],
+    ['image', 'file'],
+    ['embedded_url', 'text']
+]
+
 //GET_DATA_FROM_ENDPOINT
 const fetchData = async (endpoint) => {
     let response = await fetch(endpoint);
@@ -42,16 +50,27 @@ const getTabs = async (des_endpoint) => {
 
         //SHOW ACCORDIONS WHEN TAB IS CLICKED
         tab.addEventListener("click", () => {
-            makeAccordions(des_endpoint + "/" + i.toString());
+            makeAccordions(des_endpoint + "/" + i.toString(), i);
         })
 
     }
 }
 
+const configureAddBtn = (des_position, formFields, endpoint) => {
+    addBtn = document.querySelector('#add-button');
+    addBtn.style.display = 'block';
 
-const makeAccordions = async (endpoint) => {
+    // PICKING UP CODE FROM cms.js. I don't want an SMS-type front-end bug here.
+    $('#add-button').on('click', function () {
+        createAddAccordion(formFields, endpoint);
+    });
+}
+
+
+const makeAccordions = async (endpoint, position) => {
     fetchData(endpoint)
         .then(async (data) => {
+            configureAddBtn(position, data[0].form_fields, endpoint)
             const accordionContainer = document.querySelector('#cms-main');
             accordionContainer.innerHTML = "";
             const len = data.length;

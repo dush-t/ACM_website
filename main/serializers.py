@@ -26,6 +26,7 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
     def get_api_endpoint(self, obj):
         page = obj.page
         page_url = page.page_url
+        # print(self.kwargs['page_url'])
         return "api/retrieve/description/" + str(obj.pk)
 
     def get_form_fields(self, obj):
@@ -49,6 +50,16 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
     def get_media_upload_url(self, obj):
         string = '/media_upload/Description:' + str(obj.pk)
         return string
+
+    def create(self, validated_data):
+        params = self.context['request'].get_full_path().split("/") # parsing request url to get page and position lol
+        print(params)
+        page_url = params[4]
+        position = params[5]
+        print(page_url)
+        page = Page.objects.get(page_url=page_url)
+        return Description.objects.create(page=page, position=position, **validated_data)
+
 
 
 
