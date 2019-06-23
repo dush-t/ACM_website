@@ -5,6 +5,7 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
     accordion_name = serializers.SerializerMethodField()
     form_fields = serializers.SerializerMethodField()
     media_upload_url = serializers.SerializerMethodField()
+    api_endpoint = serializers.SerializerMethodField()
 
     class Meta:
         model = Description
@@ -18,8 +19,14 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
             'img_flag',
             'form_fields',
             'media_upload_url',
-            'embedded_url'
+            'embedded_url',
+            'api_endpoint'
         )
+
+    def get_api_endpoint(self, obj):
+        page = obj.page
+        page_url = page.page_url
+        return "api/retrieve/description/" + str(obj.pk)
 
     def get_form_fields(self, obj):
         form_fields = []
@@ -31,6 +38,7 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
             form_fields.append(['description_readmore', 'textarea'])
         if obj.description_image:
             form_fields.append(['description_image', 'file'])
+        return form_fields
 
     def get_accordion_name(self, obj):
         if obj.description_title:

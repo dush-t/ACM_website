@@ -45,13 +45,9 @@ class DescriptionViewSet(viewsets.ModelViewSet):
         return descriptions
 
     def get_object(self):  # Used with retrieve method
-        page_url = self.kwargs['page_url']
-        position = self.kwargs['position']
-        title = self.kwargs['description_title']
-        page = Page.objects.get(page_url=page_url)
-        description = Description.objects.filter(
-            page=page, position=position, description_title=title)[0]
-        self.check_object_permissions(self.request, description)
+        pk = int(self.kwargs['pk'])
+        description = Description.objects.get(pk=pk)
+        # self.check_object_permissions(self.request, description)
         return description
 
 

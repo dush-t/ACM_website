@@ -74,14 +74,14 @@ var csrf = document.getElementById("csrf").innerHTML;
 // console.log(csrf);
 
 // YIKES.
-function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data, url) {
+function createAccordion(accData, accordionIndex, url) {
 
-    var upload_url = data.media_upload_url;
+    var upload_url = accData.media_upload_url;
 
     let accordionContainer = document.querySelectorAll("#cms-main")[0];
     let accordionTab = document.createElement("div");
     accordionTab.className = "accordion";
-    let accordionTabName = document.createTextNode(tabName);
+    let accordionTabName = document.createTextNode(accData.accordion_name);
     accordionTab.appendChild(accordionTabName);
 
     
@@ -89,7 +89,7 @@ function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data
     let deleteEle = document.createElement("span");
     deleteEle.className = 'glyphicon glyphicon-trash';
     deleteEle.addEventListener('click', (e) => {
-        deleteAccordion(e, api_endpoint, url);
+        deleteAccordion(e, accData.api_endpoint, url);
     });
     accordionControl.appendChild(deleteEle);
 
@@ -108,7 +108,7 @@ function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data
     })
     accordionContainer.appendChild(accordionTab);
 
-
+    const formFields = accData.form_fields;
     let formPanel = document.createElement("div");
     formPanel.className = "panel";
     for (let i = 0; i < formFields.length; i++) {
@@ -118,16 +118,16 @@ function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data
         if (formFields[i][1] == "text") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
-            fieldEditor.setAttribute("value", data[formFields[i][0]]);
+            fieldEditor.setAttribute("value", accData[formFields[i][0]]);
             formRow.appendChild(fieldEditor);
         } else if (formFields[i][1] == "textarea") {
             let fieldEditor = document.createElement(formFields[i][1]);
-            fieldEditor.innerHTML = data[formFields[i][0]];
+            fieldEditor.innerHTML = accData[formFields[i][0]];
             formRow.appendChild(fieldEditor);
         } else if (formFields[i][1] == "file") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
-            fieldEditor.setAttribute("value", data[formFields[i][0]]);
+            fieldEditor.setAttribute("value", accData[formFields[i][0]]);
             formRow.appendChild(fieldEditor);
         }
         formPanel.appendChild(formRow);
@@ -182,7 +182,7 @@ function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data
         var json_data = JSON.stringify(currentData);
         let data = $.ajax({
             type: 'PUT',
-            url: api_endpoint,
+            url: accData.api_endpoint,
             data: currentData,
             headers: {
                 "X-CSRFToken": csrf
@@ -193,6 +193,7 @@ function createAccordion(tabName, accordionIndex, formFields, api_endpoint, data
                 alert("Success!")
             }
         });
+        console.log(accData)
     });
 }
 

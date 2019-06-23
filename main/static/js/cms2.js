@@ -26,8 +26,11 @@ fetchData("/api/get_page_list")
         }
     });
 
+
+// SET UP THE TABS
 const getTabs = async (des_endpoint) => {
     const tabContainer = document.querySelector(".existing-tab");
+    tabContainer.innerHTML = "";
     let len = Object.keys(positions).length;
     for (let i = 1; i <= len; i++) {
 
@@ -39,11 +42,30 @@ const getTabs = async (des_endpoint) => {
 
         //SHOW ACCORDIONS WHEN TAB IS CLICKED
         tab.addEventListener("click", () => {
-            console.log("lolmao" + i)
+            makeAccordions(des_endpoint + "/" + i.toString());
         })
 
     }
 }
+
+
+const makeAccordions = async (endpoint) => {
+    fetchData(endpoint)
+        .then(async (data) => {
+            const accordionContainer = document.querySelector('#cms-main');
+            accordionContainer.innerHTML = "";
+            const len = data.length;
+            if (data instanceof Array) {
+                for (let i = 0; i < len; i++) {
+                    createAccordion(data[i], i, endpoint);
+                } 
+            } else {
+                createAccordion(data[i], 0, endpoint);
+            }
+        });
+}
+
+
 
 
 

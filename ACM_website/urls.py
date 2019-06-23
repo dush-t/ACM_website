@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
 
-    path("api/retrieve/description/<str:page_url>/<str:position>/<str:description_title>",
+    path("api/retrieve/description/<int:pk>",
         views.DescriptionViewSet.as_view(
             actions={
                 'get': 'retrieve',
