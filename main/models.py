@@ -5,7 +5,7 @@ class Page(models.Model):
     page_url = models.CharField(max_length=50, null=True)
     page_id = models.CharField(max_length=20)
     page_description = models.TextField(blank=True)
-    template = models.CharField(max_length=1, default=1)                    # further below in the file to get the model.
+    template = models.CharField(max_length=20)                    # further below in the file to get the model.
         
     def __str__(self):
         return self.page_url
@@ -20,6 +20,7 @@ class Description(models.Model):
     description_readmore = models.TextField(blank=True)
     description_image = models.ImageField(upload_to='des-img', blank=True, null=True)
     img_flag = models.BooleanField(default=False) #True if the description contains an image
+    embedded_url=models.TextField(blank=True, null=True)
 
 
 class BarEntry(models.Model):
@@ -35,20 +36,6 @@ class BarEntry(models.Model):
     description = models.ForeignKey(Description, blank=True, on_delete=models.CASCADE)
 
     def __init__(self):
-        return self.content
-
-
-class BarHeading(models.Model):
-    parent_bar_entry = models.ForeignKey(BarEntry, related_name="headings", blank=True, null=True, on_delete=models.CASCADE)
-    content = models.CharField(max_length=50, blank=True, null=True)
-
-
-class BarSubentry(models.Model):
-    heading = models.ForeignKey(BarHeading, related_name="heading_sub_entry", blank=True, null=True, on_delete=models.CASCADE)
-    content = models.CharField(max_length=50)
-    url_link = models.TextField()
-    parent_entry = models.ForeignKey(BarEntry, related_name="sub_entry", on_delete=models.CASCADE)
-    def __str__(self):
         return self.content
 
 

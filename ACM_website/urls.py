@@ -16,8 +16,47 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.conf.urls.static import static
+from django.conf import settings
+from rest_framework import routers
+from main import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('main.urls'))
-]
+    path('', include('main.urls')),
+
+    path("api/retrieve/description/<str:page_url>/<str:position>/<str:description_title>",
+        views.DescriptionViewSet.as_view(
+            actions={
+                'get': 'retrieve',
+                'put': 'update',
+                'delete': 'destroy'
+            }
+        )
+    ),
+
+    path("api/list/description/<str:page_url>/<str:position>",
+        views.DescriptionViewSet.as_view(
+            actions={
+                'get': 'list',
+                'post': 'create'
+            }
+        )
+    ),
+
+    path('media_upload/<str:upload_string>',
+        views.media_upload,
+        name="media_upload"
+    ),
+
+    path("api/get_cms_permission_data",
+        views.get_cms_permission_data,
+        name="get_cms_permission_data"
+    ),
+
+    path("api/get_page_list",
+        views.get_page_list,
+        name="get_page_list")
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

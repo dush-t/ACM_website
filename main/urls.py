@@ -7,5 +7,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("sign_in", views.sign_in, name="sign_in")
+    path("sign_in", views.sign_in, name="sign_in"),
+    path("cms_portal", views.render_cms_portal),
+    path("page/<str:page_url>", views.render_page)
 ]

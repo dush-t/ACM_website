@@ -15,7 +15,7 @@
         <div class="side-bar">
             <div class="title-name">CMS Portal</div>
             <div id="prof-name">
-                Prof-name<!-- Proffesor name goes here -->
+                Pages<!-- Proffesor name goes here -->
             </div>
         </div>
         <div class="header">
@@ -50,10 +50,19 @@
             </div>
         </div>
     </div>
+
+
+    <script type="text/html" id="sideNavElemTemplate">
+        
+    </script>
+
+
     <div id="csrf">{{csrf_token}}</div>
     {%csrf_token%}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/page_data/events.js' %}"></script>
     <script src="{% static 'js/cms.js' %}"></script>
+    <script src="{% static 'js/cms2.js' %}"></script>
     
     
 </body>

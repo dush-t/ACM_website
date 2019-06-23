@@ -10,14 +10,15 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
         model = Description
         fields = (
             'accordion_name',
-            'campus',
             'position',
             'description_title',
             'description_content',
             'description_readmore',
             'description_image',
             'img_flag',
-            'form_fields'
+            'form_fields',
+            'media_upload_url',
+            'embedded_url'
         )
 
     def get_form_fields(self, obj):

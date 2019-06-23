@@ -25,6 +25,9 @@ def index(request):
     page_url = "/api/list/description/index"
     return render(request, 'main/index.html', {'page_url': page_url})
 
+def render_cms_portal(request):
+    return render(request, 'main/cms/cms.html')
+
 # Create your views here.
 class DescriptionViewSet(viewsets.ModelViewSet):
 
@@ -35,7 +38,10 @@ class DescriptionViewSet(viewsets.ModelViewSet):
         page_url = self.kwargs['page_url']
         position = self.kwargs['position']
         page = Page.objects.get(page_url=page_url)
-        descriptions = Description.objects.filter(page=page, position=position)
+        if str(position) == "all":
+            descriptions = Description.objects.filter(page=page)
+        else:
+            descriptions = Description.objects.filter(page=page, position=position)
         return descriptions
 
     def get_object(self):  # Used with retrieve method
@@ -120,6 +126,24 @@ def get_template_classes(request, template_code):
         # Return list of classes
         pass
     # So on.
+
+def render_page(request, page_url):
+    # page = Page.objects.get(page_url=page_url)
+    # html_template = page.template
+    html_template_path = 'main/templates/' + str(page_url) +'.html'
+    return render(request, html_template_path)
+
+def get_page_list(request):
+    # you can check permissions before sending list here.
+    pages = Page.objects.all()
+    page_list = []
+    for page in pages:
+        page_list.append({
+            "id": page.page_id,
+            "des_endpoint": "/api/list/description/" + str(page.page_url)
+        })
+    return JsonResponse({"pages": page_list})
+
 
 
 def get_page_data_list(request, key):
