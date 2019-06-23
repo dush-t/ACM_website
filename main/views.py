@@ -155,9 +155,12 @@ def media_upload(request, upload_string):
     params = upload_string.split(':')
     model = apps.get_model(app_label = "main", model_name = str(params[0]))
     model_instance = model.objects.get(pk = int(params[1]))
-    image = request.FILES.get("image")
-    model_instance.image = image
-    model_instance.save()
+    try:
+        image = request.FILES.get("image")
+        model_instance.image = image
+        model_instance.save()
+    except:
+        pass
 
     print(image)
 
