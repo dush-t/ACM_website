@@ -1,0 +1,110 @@
+.event-landing-container {
+    background: url('../media/carouselbg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 92vh;
+    padding-top: 30vh;
+    text-align: center;
+}
+
+.event-landing-container .page-title {
+    text-transform: uppercase;
+    display: inline;
+    font-size: 10em;
+    text-align: center;
+    color: #E1F5FE;
+    font-family: 'Monoton', cursive;
+}
+
+.page-description {
+    color: #e5e5e5 !important;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    text-align: center;
+    font-size: 2em;
+}
+
+.page-description p {
+    margin-bottom: 0;
+}
+
+@media all and (max-width: 768px) {
+    .event-landing-container .page-title {
+        font-size: 5em;
+    }
+    .event-landing-container .page-description {
+        padding-left: 2vw;
+        padding-right: 2vw;
+        font-size: 1.6em;
+    }
+}
+
+@supports (-webkit-background-clip: text) {
+    .event-landing-container > div {
+        color: transparent;
+        background: linear-gradient(7deg, #4FC3F7 50%, #E1F5FE 0);
+        -webkit-background-clip: text;
+    }
+}
+
+/*************** EVENT SECTION ******************************/
+
+.event-section {
+    min-height: 92vh;
+    padding-bottom: 4vh;
+}
+
+.odd-section {
+    color: black;
+    background: url('../media/bg3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.odd-section hr {
+    border-top: 1px solid #e5e5e5 !important;
+}
+.even-section {
+    background: url('../media/bg2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #f5f5f5;
+}
+
+.event-title {
+    font-size: 2.5em;
+    margin-top: 5vh;
+}
+
+.event-body {
+    display: block;
+    font-size: 1.3em;
+    margin-top: 3vh;
+}
+}
+.event-image-container {
+    margin-top: 2.5vh;
+}
+.event-image {
+    max-height: 35vh;
+    max-width: 100%;
+}
+
+.contact-section-odd {
+    background: white;
+    color: black;
+}
+
+.contact-section-even {
+    background: #1e2529;
+    color: #f5f5f5;
+}
+
+@media all and (max-width: 768px) {
+    .event-section {
+        text-align: center;
+    }
+    .event-section ul {
+        text-align: left;
+    }
+}

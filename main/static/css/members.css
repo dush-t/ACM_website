@@ -1,0 +1,20 @@
+.postholders-members-container {
+    /* display: inline-block; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* justify-content: start; */
+}
+
+.member-container {
+    margin: 16px 32px;
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+}
+
+@media all and (max-width: 768px) {
+    .member-container {
+        margin: 16px auto;
+    }
+}

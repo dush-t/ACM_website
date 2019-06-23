@@ -1,0 +1,84 @@
+.event-landing-container {
+    background: url('../media/carouselbg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 92vh;
+    padding-top: 30vh;
+    text-align: center;
+}
+
+.event-landing-container .page-title {
+    text-transform: uppercase;
+    display: inline;
+    font-size: 10em;
+    text-align: center;
+    color: #E1F5FE;
+    font-family: 'Monoton', cursive;
+}
+@media all and (max-width: 768px) {
+    .page-title {
+        font-size: 3em !important;
+    }
+}
+
+.achievements-container {
+    min-height: 92vh;
+    padding-top: 5vh;
+}
+
+.event-section {
+    min-height: 92vh;
+}
+
+.odd-section {
+    color: black;
+    background: url('../media/bg3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.odd-section hr {
+    border-top: 1px solid #e5e5e5 !important;
+}
+
+.even-section {
+    background: url('../media/bg2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #f5f5f5;
+}
+
+.achievement-image {
+    max-width: 100%;
+    max-height: 30vh;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.achievement div {
+    padding: 0 1vw;
+}
+@media all and (max-width:768px) {
+    .achievement {
+        display: block;
+        text-align: center !important;
+    }
+    .achievement-image {
+        max-height: 20vh;
+        margin-bottom: 2vh;
+    }
+    .achievement div {
+        padding: 0;
+    }
+}
+
+.achievement-body {
+    font-size: 1.7em;
+}
+
+.contact-section {
+    background: white;
+}
