@@ -14,19 +14,22 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .forms import *
 from .models import *
-from .decorators import *
 from .serializers import *
-from .permissions import *
-from .cms_field_data import *
+# from .permissions import *
+# from .cms_field_data import *
 import os
 import io
 import json
+
+def index(request):
+    page_url = "/api/list/description/index"
+    return render(request, 'main/index.html', {'page_url': page_url})
 
 # Create your views here.
 class DescriptionViewSet(viewsets.ModelViewSet):
 
     serializer_class = DescriptionSerializer
-    permission_classes = (DescriptionEditPerm,)
+    # permission_classes = (DescriptionEditPerm,)
 
     def get_queryset(self):  # Used with list method
         page_url = self.kwargs['page_url']
@@ -49,7 +52,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
 class BarEntryViewSet(viewsets.ModelViewSet):
 
     serializer_class = BarEntrySerializer
-    permission_classes = (BarEntryEditPerm,)
+    # permission_classes = (BarEntryEditPerm,)
 
     def get_queryset(self):
         bar_id = self.kwargs['bar_id']

@@ -1,3 +1,6 @@
+from .models import *
+from rest_framework import serializers
+
 class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
     accordion_name = serializers.SerializerMethodField()
     form_fields = serializers.SerializerMethodField()
