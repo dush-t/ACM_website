@@ -8,12 +8,40 @@ descriptionFormFields = [
     ['embedded_url', 'text']
 ]
 
+const newDescriptionTemplate = {
+    description_title: "New Description",
+    description_content: "Content",
+    description_readmore: "Read More",
+    embedded_url: "Embedded_url"
+}
+
+postDataTypes = {
+    description: {
+        position: null,
+        page_url: null
+    }
+}
+
 //GET_DATA_FROM_ENDPOINT
 const fetchData = async (endpoint) => {
     let response = await fetch(endpoint);
     let data = await response.json();
     return data;
 }
+
+const postData = async (endpoint, data) => {
+    let response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRFToken": csrf
+        },
+        body: JSON.stringify(data)
+    });
+    let responseData = await response.json();
+    return responseData;
+}
+
 
 fetchData("/api/get_page_list")
     .then(async (data) => {
@@ -51,18 +79,23 @@ const getTabs = async (des_endpoint) => {
         //SHOW ACCORDIONS WHEN TAB IS CLICKED
         tab.addEventListener("click", () => {
             makeAccordions(des_endpoint + "/" + i.toString(), i);
+            configureAddBtn(i, descriptionFormFields, des_endpoint, "description")
         })
 
     }
 }
 
-const configureAddBtn = (des_position, formFields, endpoint) => {
+const configureAddBtn = (des_position, formFields, endpoint, type) => {
     addBtn = document.querySelector('#add-button');
     addBtn.style.display = 'block';
 
     // PICKING UP CODE FROM cms.js. I don't want an SMS-type front-end bug here.
     $('#add-button').on('click', function () {
-        createAddAccordion(formFields, endpoint);
+        // createAddAccordion(formFields, endpoint+`/${des_position}`);
+        postData(endpoint+`/${des_position}`, {
+            ...newDescriptionTemplate
+        });
+        makeAccordions(endpoint+`/${des_position}`, des_position);
     });
 }
 
@@ -70,7 +103,6 @@ const configureAddBtn = (des_position, formFields, endpoint) => {
 const makeAccordions = async (endpoint, position) => {
     fetchData(endpoint)
         .then(async (data) => {
-            configureAddBtn(position, data[0].form_fields, endpoint)
             const accordionContainer = document.querySelector('#cms-main');
             accordionContainer.innerHTML = "";
             const len = data.length;

@@ -37,8 +37,8 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
             form_fields.append(['description_content', 'textarea'])
         if obj.description_readmore:
             form_fields.append(['description_readmore', 'textarea'])
-        if obj.description_image:
-            form_fields.append(['description_image', 'file'])
+        # if obj.description_image:
+        form_fields.append(['description_image', 'file'])
         return form_fields
 
     def get_accordion_name(self, obj):
