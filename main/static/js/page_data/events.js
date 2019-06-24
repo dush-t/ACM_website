@@ -13,7 +13,7 @@ const list_item = {
     "parent_elem_type": "ul",
     "index": false,
     "template_name": "#navbar-list-item",
-    "insert-position": "beforeend"
+    "insert_position": "beforeend"
 };
 
 const landing_screen = {
