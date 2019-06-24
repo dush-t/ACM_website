@@ -90,6 +90,7 @@ const configureAddBtn = (des_position, formFields, endpoint, type) => {
     addBtn.style.display = 'block';
 
     // PICKING UP CODE FROM cms.js. I don't want an SMS-type front-end bug here.
+    $('#add-button').off('click');
     $('#add-button').on('click', function () {
         // createAddAccordion(formFields, endpoint+`/${des_position}`);
         postData(endpoint+`/${des_position}`, {
@@ -115,47 +116,3 @@ const makeAccordions = async (endpoint, position) => {
             }
         });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

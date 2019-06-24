@@ -31,6 +31,7 @@ const populateDescription = (description, index=null) => {
             url: description.embedded_url
         });
         
+        console.log(html, templateData);
         $parent.insertAdjacentHTML(templateData.insert_position, html);
         console.log(description.description_title);
         

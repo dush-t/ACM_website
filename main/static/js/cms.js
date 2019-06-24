@@ -87,6 +87,7 @@ function createAccordion(accData, accordionIndex, url) {
     
     let accordionControl = document.createElement('div');
     let deleteEle = document.createElement("span");
+    deleteEle.innerHTML = 'Delete'
     deleteEle.className = 'glyphicon glyphicon-trash';
     deleteEle.addEventListener('click', (e) => {
         deleteAccordion(e, accData.api_endpoint, url);
