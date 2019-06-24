@@ -127,7 +127,8 @@ def render_page(request, page_url):
     # page = Page.objects.get(page_url=page_url)
     # html_template = page.template
     html_template_path = 'main/templates/' + str(page_url) +'.html'
-    return render(request, html_template_path)
+    page_url = '/api/list/description/' + page_url + '/all'
+    return render(request, html_template_path, {'page_url': page_url})
 
 def get_page_list(request):
     # you can check permissions before sending list here.
