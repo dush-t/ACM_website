@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/achievements.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -28,32 +26,127 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="index.html" class="navbar-brand"> <img src="media/acm_logo-17.png" width="80px" alt="">
+                        <a href="index.html" class="navbar-brand"> 
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="main-navbar">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index.html">HOME</a></li>
+                           <!-- <li><a href="index.html">HOME</a></li>
                             <li><a href="sig.html">SIG</a></li>
                             <li><a href="https://bitsacm.github.io/">BLOG</a></li>
                             <li><a href="events.html">EVENTS</a></li>
                             <li><a href="members.html">MEMBERS</a></li>
-                            <li class="active-page"><a href="#">ACHIEVEMENTS</a></li>
+                            <li class="active-page"><a href="#">ACHIEVEMENTS</a></li> -->
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
 
+        <script id="brand-logo" type="text/html">
+            <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" width="80px" alt="">
+        </script>
+
+        <script type="text/html" id="navbar-list-item">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
 
 
         <div class="event-landing-container">
-            <div class="page-title"><span>Achievements</span></div>
+            <!-- <div class="page-title"><span>Achievements</span></div> -->
         </div>
 
-        <div class="achievements-container odd-section">
+        <script type="text/html" id="landing_screen">
+            <div class="page-title"><span>{% templatetag openvariable %}title{% templatetag closevariable %}</span></div>
+        </script>
+
+        <script type="text/html" id="odd-achievement-section">
+            
+            <div class="achievements-container odd-section">
+                <div class="container">
+
+                    <div class="achievement odd-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+                 <div class="achievement even-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="achievement odd-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+        </div>
+            
+        </script>
+
+        <script type="text/html" id="even-achievement-section">
+
+            <div class="achievements-container even-section">
+                <div class="container">
+
+                    <div class="achievement events-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="achievement odd-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="achievement events-achievement">
+                    <div class="achievement-image-container">
+                        <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                    </div>
+                    <div class="achievement-body">
+                        <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                    </div>
+                </div>
+                <hr>
+
+            </div>
+        </div>        
+
+        </script>
+
+        <div class="achievement-section-container">
+        </div>
+
+        <!--<div class="achievements-container odd-section">
             <div class="container">
+
                 <div class="achievement odd-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/RecruitmentProgram_2018.png" alt="">
@@ -63,6 +156,7 @@
                     </div>
                 </div>
                 <hr>
+
                 <div class="achievement even-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/acm_logo-18.png" alt="">
@@ -73,6 +167,7 @@
                     </div>
                 </div>
                 <hr>
+
                 <div class="achievement odd-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/gsoc.png" alt="">
@@ -84,6 +179,7 @@
                     </div>
                 </div>
                 <hr>
+
             </div>
 
         </div>
@@ -92,6 +188,7 @@
 
         <div class="achievements-container even-section">
             <div class="container">
+
                 <div class="achievement even-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/members/Cheral_Khandediya.jpg" alt="">
@@ -102,6 +199,7 @@
                     </div>
                 </div>
                 <hr>
+
                 <div class="achievement odd-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/members/Poonam_Mishra.jpg" alt="">
@@ -112,6 +210,7 @@
                     </div>
                 </div>
                 <hr>
+
                 <div class="achievement even-achievement">
                     <div class="achievement-image-container">
                         <img class="achievement-image" src="./media/members/Ameesha_Mittal.jpg" alt="">
@@ -123,6 +222,7 @@
                     </div>
                 </div>
                 <hr>
+                
             </div>
         </div>
 
@@ -186,7 +286,25 @@
                 </div>
                 <hr>
             </div>
-        </div>
+        </div>-->
+
+        `<!-- Scripts for contact section -->
+
+        <script type="text/html" id="contact-section-about">
+            <div class="about-footer">
+                <div class="about-footer-title">
+                    <h4>{% templatetag openvariable %}title{% templatetag closevariable %}</h4>
+                    <hr>
+                    <p>{% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/html" id="contact_section_link">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}"> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""></a></li>
+        </script>
+
+
 
         <div class="contact-section odd-section">
             <div class="about-footer">
@@ -200,7 +318,7 @@
             <div class="follow-us">
                 <h4> Follow us on </h4>
                 <hr>
-                <ul>
+                <ul class="contact_section_links_container">
                     <li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
                     <li><a href="https://twitter.com/bitsacm"> <img src="./media/twitter.png" alt="twitter"></a></li>
                     <li><a href="https://github.com/bitsacm"><img src="./media/github-dark.png" alt=""></a></li>
@@ -225,5 +343,10 @@
     </div>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="{% static 'js/page_data/achievements.js' %}"></script>
+<script src="{% static 'js/page.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </html>
