@@ -12,6 +12,8 @@ body {
 /*********** NAVBAR ***************/
 .navbar {
     background: #f5f5f5;
+    min-height: 108px;
+    
 }
 
 .navbar-brand {
@@ -20,6 +22,10 @@ body {
 
 .navbar ul li a{
     margin-top: 2vh !important;
+}
+.navbar-nav.navbar-right{
+    position: relative;
+    left: 108px;
 }
 
 @media (max-width: 1024px) {
@@ -360,7 +366,7 @@ body {
 @-moz-document url-prefix() {
     .event-image {
         max-height: 400px !important;
-        max-width: 600px !important;
+        /* max-width: 600px !important; */
     }
 }
 
