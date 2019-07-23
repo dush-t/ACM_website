@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="{% static 'css/events.css' %}">
 </head>
 
+<script id="context" type="text/html">
+        {{page_url}}
+    </script>
+
 <body>
     <div class="main-container">
         <div class="navbar-container">
@@ -51,6 +55,10 @@
 
         <script type="text/html" id="navbar-list-item">
             <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
+
+        <script type="text/html" id="navbar-list-item-active">
+            <li class="active-page"><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
         </script>
 
         <div class="event-landing-container">
@@ -122,39 +130,52 @@
             <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}"> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""></a></li>
         </script>
 
+        <script type="text/html" id="where_to_find_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %} </h4>
+                    <p><img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" height="16px" width="16px" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                    <hr>
+        </script>
+
+        <script type="text/html" id="email_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %}  </h4>
+                    <a class="email-link" href="{% templatetag openvariable %}url{% templatetag closevariable %}">
+                        <p> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %}  </p>
+                    </a>
+        </script>
+
         
         <div class="contact-section even-section contact-section-even">
-            <div class="about-footer">
+           <!-- <div class="about-footer">
                 <div class="about-footer-title">
                     <h4>BITS-ACM</h4>
                     <hr>
                     <p>This year BITS-ACM student chapter has 70 core team members and has nurtured more than 650 alumni since
                             its inception in 2008. </p>
                 </div>
-            </div>
+            </div>-->
             <div class="follow-us">
                 <h4> Follow us on </h4>
                 <hr>
                 <ul class="contact_section_links_container">
-                    <li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
+                   <!-- <li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
                     <li><a href="https://twitter.com/bitsacm"> <img src="./media/twitter.png" alt="twitter"></a></li>
                     <li><a href="https://github.com/bitsacm"><img src="./media/github-light.png" alt=""></a></li>
-                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>
+                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>-->
                 </ul>
                 <hr>
             </div>
             <div class="contact-us">
-                <div>
-                    <h4> Where to find us </h4>
+                <div class="whereToFindUs">
+                  <!--  <h4> Where to find us </h4>
                     <p><img src="./media/blue-location.png" height="16px" width="16px" alt=""> BITS Pilani, Vidyavihar
                         Campus, Pilani, Rajasthan, 333031 </p>
-                    <hr>
+                    <hr>-->
                 </div>
-                <div>
-                    <h4> Email us at </h4>
+                <div class="emailUs">
+                   <!-- <h4> Email us at </h4>
                     <a class="email-link" href="mailto:bitsacm.acm@gmail.com">
                         <p> <img src="./media/gmail-logo.png" alt=""> bitsacm.acm@gmail.com </p>
-                    </a>
+                    </a>-->
                 </div>
             </div>
         </div>
