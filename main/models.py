@@ -14,7 +14,7 @@ class Page(models.Model):
 class Description(models.Model):
     page = models.ForeignKey(Page, related_name="page_data", on_delete=models.CASCADE, blank=True, null=True) #Which page the description object is on. Data will be fectched pagewise.
     level = models.CharField(max_length=1, default=0)
-    position = models.CharField(max_length=1, blank=True) #This field decides where the content is placed. The choice code is passed to the frontend.
+    position = models.CharField(max_length=3, blank=True) #This field decides where the content is placed. The choice code is passed to the frontend.
     description_title = models.CharField(max_length=50, blank=True)
     description_content = models.TextField(blank=True)
     description_readmore = models.TextField(blank=True)
