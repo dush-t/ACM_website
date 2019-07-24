@@ -12,8 +12,6 @@ body {
 /*********** NAVBAR ***************/
 .navbar {
     background: #f5f5f5;
-    min-height: 108px;
-    
 }
 
 .navbar-brand {
@@ -22,10 +20,6 @@ body {
 
 .navbar ul li a{
     margin-top: 2vh !important;
-}
-.navbar-nav.navbar-right{
-    position: relative;
-    left: 108px;
 }
 
 @media (max-width: 1024px) {
@@ -111,8 +105,8 @@ body {
 
 .carousel {
     /* background: url('../media/carouselbg.png'); */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     height: 92vh;
 }
 
@@ -148,7 +142,7 @@ body {
     opacity: 0.9 !important;
 }
 
-.carousel-1, .carousel-2, .carousel-3 {
+.carousel-1, .carousel-2, .carousel-3, .carousel{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,6 +154,7 @@ body {
 
 #carousel-title, #carousel2-title, #carousel3-title {
     font-family: 'Monoton', cursive;
+    color: white;
 }
 #carousel2-title {
     color: white;
@@ -231,6 +226,8 @@ body {
         widows: 100vw;
         padding-top: 40vh;
         text-align: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .carousel-title {
@@ -366,7 +363,7 @@ body {
 @-moz-document url-prefix() {
     .event-image {
         max-height: 400px !important;
-        /* max-width: 600px !important; */
+        max-width: 600px !important;
     }
 }
 

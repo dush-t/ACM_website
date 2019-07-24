@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{%load static%}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BITS-ACM</title>
-    <link rel='shortcut icon' type='image/x-icon' href='media/acm_logo-18.png' />
+    <link rel='shortcut icon' type='image/x-icon' href='{% static "media/acm_logo-18.png" %}' />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/members.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/members.css' %}">
 </head>
+
+<script id="context" type="text/html">
+        {{page_url}}
+    </script>
 
 <body>
     <div class="main-container">
@@ -27,510 +31,156 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="index.html" class="navbar-brand"> <img src="media/acm_logo-17.png" width="80px" alt="">
+                        <a href="index.html" class="navbar-brand"> 
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="main-navbar">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index.html">HOME</a></li>
-                            <li><a href="sig.html">SIG</a></li>
-                            <li><a href="https://bitsacm.github.io/">BLOG</a></li>
-                            <li><a href="events.html">EVENTS</a></li>
-                            <li class="active-page"><a href="members.html">MEMBERS</a></li>
-                            <li><a href="achievements.html">ACHIEVEMENTS</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
+        </div>
+
+        <script id="brand-logo" type="text/html">
+            <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" width="80px" alt="">
+        </script>
+
+        <script type="text/html" id="navbar-list-item-active">
+            <li class="active-page"><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
+
+        <script type="text/html" id="navbar-list-item">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
+
+        <script type="text/html" id="member-page-heading">
+            <h1>{% templatetag openvariable %}title{% templatetag closevariable %}</h1> <br>
+        </script>
+
+        <script type="text/html" id="member-page-subheading">
+                    <h3>{% templatetag openvariable %}title{% templatetag closevariable %}</h3>
+                <hr><br>
+            </script>
+
+        <script type="text/html" id="postholder-member">
+            <div class="member-container">
+                        <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="no image" class="postholder-img-container">
+                        <div class="img-caption">
+                            {% templatetag openvariable %}content{% templatetag closevariable %}
+                        </div>
+            </div>
+        </script>
+
+        <script type="text/html" id="core-member">
+            <div class="member-container">
+                        <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="no image" class="postholder-img-container">
+                        <div class="img-caption">
+                            {% templatetag openvariable %}content{% templatetag closevariable %}
+                        </div>
+                    </div>
+        </script>
+
 
             <div class="members-container container">
+
                 <span class="members-container-title">
-                    <h1>BITS-ACM Members 2018-19</h1> <br>
+                    <!--<h1>BITS-ACM Members 2018-19</h1> <br>-->
                 </span>
-                <span>
-                    <h3>Postholders</h3>
+
+                <span class="subheading-1">
+                   <!-- <h3>Postholders</h3> 
+                    <hr><br>-->
                 </span>
-                <hr><br>
+                
+
                 <div class="postholders-members-container">
-                    <div id="postholder-1" class="member-container">
-                        <img src="./media/members/anmol_singhal" alt="no image" class="postholder-img-container">
-                        <p class="img-caption">
-                            Chair
-                            <br>
-                            Anmol Singhal
-                        </p>
-                    </div>
-                    <div id="postholder-2" class="member-container">
-                        <img src="./media/members/arka_talukdar.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Chair
-                            <br>
-                            Arka Talukdar
-                        </div>
-                    </div>
-                    <div id="postholder-3" class="member-container">
-                        <img src="./media/members/apurv_bajaj.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Vice CHair
-                            <br>
-                            Apurv Bajaj
-                        </div>
-                    </div>
-                    <div id="postholder-4" class="member-container">
-                        <img src="./media/members/ishan_bhanuka.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Secretary
-                            <br>
-                            Ishan Bhanuka
-                        </div>
-                    </div>
-                    <div id="postholder-5" class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Treasurer
-                            <br>
-                            Naman Todwal
-                        </div>
-                    </div>
-                    <div id="postholder-6" class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Membership Cod.
-                            <br>
-                            Ayush Chudgar
-                        </div>
-                    </div>
-                    <div id="postholder-7" class="member-container">
-                        <img src="./media/members/manav_kaushik.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Publicity Cod.
-                            <br>
-                            Manav Kaushik
-                        </div>
-                    </div>
-                    <div id="postholder-8" class="member-container">
-                        <img src="./media/members/nithya_sundaramoorth.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Outreach Cod.
-                            <br>
-                            Nitya Sundaramoorth
-                        </div>
-                    </div>
-                    <div id="postholder-9" class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Machine Learning Cod.
-                            <br>
-                            Alex Mathai
-                        </div>
-                    </div>
-                    <div id="postholder-10" class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Competitive Coding Cod.
-                            <br>
-                            Priyank Jairaj
-                        </div>
-                    </div>
-                    <div id="postholder-11" class="member-container">
-                        <img src="./media/members/rahul_bothra.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            WebD Cod.
-                            <br>
-                            Rahul Bothra
-                        </div>
-                    </div>
-                    <div id="postholder-12" class="member-container">
-                        <img src="./media/members/manan_agarwal.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Webmaster
-                            <br>
-                            Manan Agarwal
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aryan Sawhney
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Divesh Utaamchandani
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/honnesh_rohmetra.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Honnesh Rohmetra
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Kapil Sharma
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Neethu Maria Joy
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Rigvita Sharma
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Rishav Sinha
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/sankalp_sangle.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Sankalp Sangle
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Sombuddha Chakravarty
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Vidit Jain
-                        </div>
-                    </div>
                 </div>
 
                 <br>
-                <h3> Core Team Members</h3>
-                <hr> <br>
+
+                <span class="subheading-2">
+                  <!-- <h3> Core Team Members</h3>
+                     <hr> <br>-->
+                </span>
+
                 <div class="core-team-container postholders-members-container">
-                    <div id="member-1" class="member-container">
-                        <img src="./media/members/aarjav_jain.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aarjav Jain
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aditya Ramaswamy
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/20190104_235501.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aman Shukla
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aniruddha Karajgi
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Anirudh Goyal
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Anishkumar SS
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/apoorv_sadana.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Apoorv Sadana
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/aryan_mehra.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Aryan Mehra
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Ashrya Agrawal
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/ayush_jain.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Ayush Jain
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/bharat_bhargava.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Bharat Bhargava
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/chinmay_hebbar.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Chinmay Hebbar
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Chirag C D
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/dushyant_yadav.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Dushyant Yadav
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Harsh Khatri
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Lingesh Kumaar
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Manan Soni
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/mayank_jain.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Mayank Jain
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/mudit_shivendra.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Mudit Shivendra
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/Mukund_choudhary.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Mukund Choudhary
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/navaneeth_raghunath.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Navaneeth Ragunath
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Nirav Asher
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Nischay Shopurkar
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/prarabdh_garg.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Prarabdh Garg
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Ritik Garg
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Rohan Kumar Rohil
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/rohit_rajhans.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Rohit Rajhans
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/rohit_r.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Rohit Ramaprasad
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/samina_mulani.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Samina Mulani
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Sanil Patel
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/satvik_golechha.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Satvik Golechha
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/saujas_adarkar.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Saujas Adarkar
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/shaily_bhatt.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Shaily Bhatt
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Shivangi Singh
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/shubham_gupta.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Shubham Gupta
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Siddhant Khandelwal
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/siddharth_singh.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Siddharth Singh
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Sparsh Kasana
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/syed_hamza_zaidi.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Syed Hamza Zaidi
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/tanmay_agrawal.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Tanmay Agrawal
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/tanya_garg.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Tanya Garg
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Ujjwal Gandhi
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Unmesh Roy
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/user-image-.png" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Varsha Singhania
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/VIBHU_VERMA.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Vibhu Verma
-                        </div>
-                    </div>
-                    <div class="member-container">
-                        <img src="./media/members/yashdeep_gupta.jpg" alt="no image" class="postholder-img-container">
-                        <div class="img-caption">
-                            Yashdeep Gupta
-                        </div>
-                    </div>
+                </div>
+
+            </div>
+        
+
+        <script type="text/html" id="contact-section-about">
+            <div class="about-footer">
+                <div class="about-footer-title">
+                    <h4>{% templatetag openvariable %}title{% templatetag closevariable %}</h4>
+                    <hr>
+                    <p>{% templatetag openvariable %}content{% templatetag closevariable %} </p>
                 </div>
             </div>
-        </div>
+        </script>
 
-        <div class="contact-section contact-section-even">
-            <div class="about-footer">
+        <script type="text/html" id="contact_section_link">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}"> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""></a></li>
+        </script>
+
+        <script type="text/html" id="where_to_find_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %} </h4>
+                    <p><img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" height="16px" width="16px" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                    <hr>
+        </script>
+
+        <script type="text/html" id="email_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %}  </h4>
+                    <a class="email-link" href="{% templatetag openvariable %}url{% templatetag closevariable %}">
+                        <p> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %}  </p>
+                    </a>
+        </script>
+
+        <div class="contact-section even-section contact-section-even">
+            <!--<div class="about-footer">
                 <div class="about-footer-title">
                     <h4>BITS-ACM</h4>
                     <hr>
                     <p>This year BITS-ACM student chapter has 70 core team members and has nurtured more than 650 alumni since
                             its inception in 2008. </p>
                 </div>
-            </div>
+            </div>-->
             <div class="follow-us">
                 <h4> Follow us on </h4>
                 <hr>
-                <ul>
-                    <li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
+                <ul class="contact_section_links_container">
+                    <!--<li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
                     <li><a href="https://twitter.com/bitsacm"> <img src="./media/twitter.png" alt="twitter"></a></li>
                     <li><a href="https://github.com/bitsacm"><img src="./media/github-light.png" alt=""></a></li>
-                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>
+                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>-->
                 </ul>
                 <hr>
             </div>
             <div class="contact-us">
-                <div>
-                    <h4> Where to find us </h4>
+                <div class="whereToFindUs">
+                    <!--<h4> Where to find us </h4>
                     <p><img src="./media/blue-location.png" height="16px" width="16px" alt=""> BITS Pilani, Vidyavihar
                         Campus, Pilani, Rajasthan, 333031 </p>
-                    <hr>
+                    <hr>-->
                 </div>
-                <div>
-                    <h4> Email us at </h4>
+                <div class="emailUs">
+                    <!--<h4> Email us at </h4>
                     <a class="email-link" href="mailto:bitsacm.acm@gmail.com">
                         <p> <img src="./media/gmail-logo.png" alt=""> bitsacm.acm@gmail.com </p>
-                    </a>
+                    </a>-->
                 </div>
             </div>
         </div>
     </div>
+
+
 </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="{% static 'js/page_data/members.js' %}"></script>
+    <script src="{% static 'js/page.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </html>
