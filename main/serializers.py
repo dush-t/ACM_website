@@ -53,11 +53,10 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         params = self.context['request'].get_full_path().split("/") # parsing request url to get page and position lol
-        print(params)
         page_url = params[4]
         position = params[5]
-        print(page_url)
         page = Page.objects.get(page_url=page_url)
+        print(validated_data)
         return Description.objects.create(page=page, position=position, **validated_data)
 
 
