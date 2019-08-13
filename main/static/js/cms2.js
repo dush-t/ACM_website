@@ -47,7 +47,7 @@ fetchData("/api/get_page_list")
     .then(async (data) => {
         const pages = data.pages
         const len = pages.length;
-        for(let i=0; i < len; i++) {
+        for (let i = 0; i < len; i++) {
 
             console.log(data)
             let sideNavEle = document.createElement('div');
@@ -74,7 +74,7 @@ const getTabs = async (des_endpoint) => {
         let tab = document.createElement("span");
         const tabName = document.createTextNode(positions[i.toString()])
         tab.appendChild(tabName);
-        tabContainer.appendChild(tab); 
+        tabContainer.appendChild(tab);
 
         //SHOW ACCORDIONS WHEN TAB IS CLICKED
         tab.addEventListener("click", () => {
@@ -93,24 +93,26 @@ const configureAddBtn = (des_position, formFields, endpoint, type) => {
     $('#add-button').off('click');
     $('#add-button').on('click', async function () {
         // createAddAccordion(formFields, endpoint+`/${des_position}`);
-        await postData(endpoint+`/${des_position}`, {
+        await postData(endpoint + `/${des_position}`, {
             ...newDescriptionTemplate
         });
-        makeAccordions(endpoint+`/${des_position}`, des_position);
+        makeAccordions(endpoint + `/${des_position}`, des_position);
     });
 }
 
 
-const makeAccordions = async (endpoint, position=null) => {
+const makeAccordions = async (endpoint, position = null) => {
+    console.log(endpoint);
     fetchData(endpoint)
         .then(async (data) => {
             const accordionContainer = document.querySelector('#cms-main');
             accordionContainer.innerHTML = "";
-            const len = data.length;
+            console.log(data);
             if (data instanceof Array) {
+                const len = data.length;
                 for (let i = 0; i < len; i++) {
                     createAccordion(data[i], i, endpoint);
-                } 
+                }
             } else {
                 createAccordion(data[i], 0, endpoint);
             }
