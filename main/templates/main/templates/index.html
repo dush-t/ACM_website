@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{%load static%}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +13,7 @@
     BITS ACM student chapter has 70 core team members and has nurtured more than 650 alumni since its
     inception in 2008. ">
     <title>BITS-ACM</title>
-    <link rel='shortcut icon' type='image/x-icon' href='media/acm_logo-18.png' />
+    <link rel='shortcut icon' type='image/x-icon' href='{% static "media/acm_logo-18.png" %}' />
     <!-- <link rel="stylesheet" href="css/loader.css"> -->
     <style>
 
@@ -312,12 +314,14 @@
 </style>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
+
+
+<script id="context" type="text/html">
+        {{page_url}}
+    </script>
 
 <body>
     <div id="page-loader" class="loader-container">
@@ -351,32 +355,76 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="#" class="navbar-brand"> <img src="media/acm_logo-17.png" width="80px" alt="">
+                        <a href="#" class="navbar-brand">
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="main-navbar">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="sig.html">SIG</a></li>
+                           <!-- <li><a href="sig.html">SIG</a></li>
                             <li><a href="https://bitsacm.github.io/" target="_blank">BLOG</a></li>
                             <li><a href="events.html">EVENTS</a></li>
                             <li><a href="members.html">MEMBERS</a></li>
-                            <li><a class="active-page" href="achievements.html">ACHIEVEMENTS</a></li>
+                            <li><a class="active-page" href="achievements.html">ACHIEVEMENTS</a></li>-->
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
 
+        <script id="brand-logo" type="text/html">
+            <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" width="80px" alt="">
+        </script>
+
+        <script type="text/html" id="navbar-list-item">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
+
+        <script type="text/html" id="navbar-list-item-active">
+            <li class="active-page"><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">{% templatetag openvariable %}title{% templatetag closevariable %}</a></li>
+        </script>
+
+        <script type="text/html" id="carousel-indicator-template-active">
+            <li data-target="#main-carousel" data-slie-to="0" class="active"></li>
+        </script>
+
+        <script type="text/html" id="carousel-indicator-template">
+            <li data-target="#main-carousel" data-slie-to="1"></li>
+        </script>
+
+        <script type="text/html" id="carousel-item-template-active">
+            <div class="item active">
+                    <div class="carousel" style="background: url({% templatetag openvariable %}image_url{% templatetag closevariable %});">
+                        <div>
+                            <h1 class="carousel-title">{% templatetag openvariable %}title{% templatetag closevariable %}</h1>
+                        </div>
+                        <div class="carousel-anim-container">
+                            <div class="anim-text"></div>
+                        </div>
+                    </div>
+             </div>
+        </script>
+
+
+        <script type="text/html" id="carousel-item-template">
+            <div class="item">
+                    <div class="carousel" style="background: url({% templatetag openvariable %}image_url{% templatetag closevariable %});">
+                        <h1 class="carousel-title">{% templatetag openvariable %}title{% templatetag closevariable %}</h1>
+                        <a href="{% templatetag openvariable %}url{% templatetag closevariable %}"><button class="learn-more-btn btn bg-primary">{% templatetag openvariable %}content{% templatetag closevariable %}</button></a>
+                    </div>
+             </div>
+        </script>
+
+
         <div class="carousel slide" id="main-carousel" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#main-carousel" data-slie-to="0" class="active"></li>
+                <!--<li data-target="#main-carousel" data-slie-to="0" class="active"></li>
                 <li data-target="#main-carousel" data-slie-to="1"></li>
-                <li data-target="#main-carousel" data-slie-to="1"></li>
+                <li data-target="#main-carousel" data-slie-to="1"></li>-->
             </ol>
 
             <div class="carousel-inner">
-                <div class="item active">
+                <!--<div class="item active">
                     <div class="carousel-1">
                         <div>
                             <h1 class="carousel-title" id="carousel-title"> BITS-ACM</h1>
@@ -399,9 +447,9 @@
                         <a href="events.html#stock_market_simulation"><button class="learn-more-btn btn bg-primary">Learn
                                 More</button></a>
                     </div>
-                </div>
+                </div>-->
             </div>
-
+         
             <a href="#main-carousel" data-slide="prev" class="left carousel-control nav-carousel-left">
                 <div class="nav-carousel">
                     <div class="nav-carousel-1"></div>
@@ -425,8 +473,31 @@
             </a>
         </div>
 
+
+        <script type="text/html" id="mob-carousel-item-template-active">
+            <div class="mobile-container" style="background: url({% templatetag openvariable %}image_url{% templatetag closevariable %});background-size: cover;
+        background-repeat: no-repeat;">
+                <div>
+                    <h1 id="carousel-title">{% templatetag openvariable %}title{% templatetag closevariable %}</h1>
+                </div>
+                <div class="carousel-anim-container">
+                    <div class="anim-text-mob"></div>
+                </div>
+            </div>
+        </script>
+
+
+        <script type="text/html" id="mob-carousel-item-template">
+            <div class="mobile-container" style="background: url({% templatetag openvariable %}image_url{% templatetag closevariable %});background-size: cover;background-repeat: no-repeat;">
+                <h1 class="carousel-title" id="carousel2-title"> {% templatetag openvariable %}title{% templatetag closevariable %} </h1>
+                <br><a href="{% templatetag openvariable %}url{% templatetag closevariable %}"><button class="learn-more-btn btn bg-primary">{% templatetag openvariable %}content{% templatetag closevariable %}</button></a>
+            </div>
+        </script>
+
+
+
         <div id="mobile-carousel">
-            <div class="mobile-container" id="mob-carousel-1">
+            <!--<div class="mobile-container" id="mob-carousel-1">
                 <div>
                     <h1 id="carousel-title"> BITS-ACM</h1>
                 </div>
@@ -443,13 +514,26 @@
                 <h1 class="carousel-title" id="carousel3-title"> STOCK MARKET SIMULATION </h1>
                 <br><a href="events.html#stock_market_simulation"><button class="learn-more-btn btn bg-primary">Learn
                         More</button></a>
-            </div>
+            </div>-->
         </div>
 
-        <div class="section" id="about">
-            <div class="section-title"><span>About Us</span></div>
+
+        <script type="text/html" id="about-section">
+
+            <div class="section-title"><span>{% templatetag openvariable %}title{% templatetag closevariable %} </span></div>
             <div class="section-row">
-                <!-- <div class="section-image"><img src="media/about_head.png" alt=""></div> -->
+                <div class="container">
+                    <p>{% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                </div>
+            </div>
+
+        </script>
+
+
+        <div class="section" id="about">
+            <!--<div class="section-title"><span>About Us</span></div>-->
+            <div class="section-row about">
+                <!-- <div class="section-image"><img src="media/about_head.png" alt=""></div> 
                 <div class="container">
                     <p>We are the Association for Computing Machinery (ACM), Student Chapter,
                         Birla Institute of Technology and Science, Pilani (BITS-ACM).
@@ -460,16 +544,52 @@
                         and foster a sense of innovation and creativity among computer enthusiasts. Alumni of the
                         chapter have gone on to conduct
                         research at top universities and create successful companies.</p>
-                </div>
+                </div>-->
             </div>
         </div>
 
-        <div class="section" id="events">
-            <div class="section-title"><span>Events</span></div>
-            <div class="section-row">
+        <script type="text/html" id="section-title-template">
+            <div class="section-title"><span>{% templatetag openvariable %}title{% templatetag closevariable %}</span></div>
+        </script>
 
-                <div class="events-container">
-                    <div class="event-container container odd-event">
+        <script type="text/html" id="event-item-odd">
+            <div class="event-container container odd-event">
+                        <div class="event-title"> <span> {% templatetag openvariable %}title{% templatetag closevariable %} </span></div>
+                        <div class="event-body">
+                            <p>
+                                {% templatetag openvariable %}content{% templatetag closevariable %}
+                            </p>
+                            <img class="event-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                        </div>
+                        <div class="event-footer"><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">Read More</a></div>
+                    </div>
+                    <hr>
+
+        </script>
+
+
+        <script type="text/html" id="event-item-even">
+            <div class="event-container container even-event">
+                        <div class="event-title"> <span> {% templatetag openvariable %}title{% templatetag closevariable %} </span></div>
+                        <div class="event-body">
+                            <p>
+                                {% templatetag openvariable %}content{% templatetag closevariable %}
+                            </p>
+                            <img class="event-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                        </div>
+                        <div class="event-footer"><a href="{% templatetag openvariable %}url{% templatetag closevariable %}">Read More</a></div>
+                    </div>
+                    <hr>
+
+        </script>
+
+        <div class="section" id="events">
+            <!--<div class="section-title"><span>Events</span></div>-->
+            <div class="section-row ">
+
+                <div class="events-container events-container-events">
+
+                   <!-- <div class="event-container container odd-event">
                         <div class="event-title"> <span> Checkmate </span></div>
                         <div class="event-body">
                             <p>
@@ -483,6 +603,7 @@
                         <div class="event-footer"><a href="events.html#checkmate">Read More</a></div>
                     </div>
                     <hr>
+
                     <div class="event-container container even-event">
                         <div class="event-title"> <span> Interactive Session on GSOC </span></div>
                         <div class="event-body">
@@ -497,17 +618,18 @@
                             <img class="event-image" src="./media/gsoc.png" alt="">
                         </div>
                         <div class="event-footer"><a href="events.html#gsoc-session">Read More</a></div>
-                    </div>
+                    </div>-->
+
                 </div>
             </div>
         </div>
 
         <div class="section" id="sig">
-            <div class="section-title"><span>SIG</span></div>
+           <!-- <div class="section-title"><span>SIG</span></div>-->
             <div class="section-row">
 
-                <div class="events-container">
-                    <div class="event-container container odd-event">
+                <div class="events-container events-container-sig">
+                  <!--  <div class="event-container container odd-event">
                         <div class="event-title"> <span> Frontend Development </span></div>
                         <div class="event-body">
                             <p>
@@ -532,7 +654,7 @@
                             <img class="event-image" src="./media/backend.jpg" alt="">
                         </div>
                         <div class="event-footer"><a href="sig.html#backend">Read More</a></div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -620,12 +742,38 @@
             </div>
         </div> -->
 
+        <script type="text/html" id="achievement-item-odd">
+            <div class="achievement odd-achievement">
+                            <div class="achievement-image-container">
+                                <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                            </div>
+                            <div class="achievement-body">
+                                <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                            </div>
+             </div>
+             <hr>
+        </script>
+
+        <script type="text/html" id="achievement-item-even">
+            <div class="achievement even-achievement">
+                            <div class="achievement-image-container">
+                                <img class="achievement-image" src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt="">
+                            </div>
+                            <div class="achievement-body">
+                                <p>{% templatetag openvariable %}content{% templatetag closevariable %}</p>
+                            </div>
+             </div>
+             <hr>
+        </script>
+
+
         <div class="section" id="achievements">
-            <div class="section-title">Club Achievements</div>
+            <!--<div class="section-title">Club Achievements</div>-->
             <div class="section-row">
                 <div class="achievements-container">
-                    <div class="container">
-                        <div class="achievement odd-achievement">
+                    <div class="container achievements">
+
+                       <!-- <div class="achievement odd-achievement">
                             <div class="achievement-image-container">
                                 <img class="achievement-image" src="./media/RecruitmentProgram_2018.png" alt="">
                             </div>
@@ -634,6 +782,7 @@
                             </div>
                         </div>
                         <hr>
+
                         <div class="achievement even-achievement">
                             <div class="achievement-image-container">
                                 <img class="achievement-image" src="./media/acm_white.png" alt="">
@@ -653,14 +802,44 @@
                                 <p>BITS-ACM is proud to have had six of its members selected for <b>GSOC-18</b>.</p>
                             </div>
                         </div>
-                        <hr>
+                        <hr>-->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="contact-section contact-section-odd">
+
+
+        <script type="text/html" id="contact-section-about">
             <div class="about-footer">
+                <div class="about-footer-title">
+                    <h4>{% templatetag openvariable %}title{% templatetag closevariable %}</h4>
+                    <hr>
+                    <p>{% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/html" id="contact_section_link">
+            <li><a href="{% templatetag openvariable %}url{% templatetag closevariable %}"> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""></a></li>
+        </script>
+
+        <script type="text/html" id="where_to_find_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %} </h4>
+                    <p><img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" height="16px" width="16px" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %} </p>
+                    <hr>
+        </script>
+
+        <script type="text/html" id="email_us">
+            <h4> {% templatetag openvariable %}title{% templatetag closevariable %}  </h4>
+                    <a class="email-link" href="{% templatetag openvariable %}url{% templatetag closevariable %}">
+                        <p> <img src="{% templatetag openvariable %}image_url{% templatetag closevariable %}" alt=""> {% templatetag openvariable %}content{% templatetag closevariable %}  </p>
+                    </a>
+        </script>
+
+
+        <div class="contact-section contact-section-odd">
+           <!-- <div class="about-footer">
                 <div class="about-footer-title">
                     <h4>BITS-ACM</h4>
                     <hr>
@@ -668,35 +847,41 @@
                         alumni since
                         its inception in 2008. </p>
                 </div>
-            </div>
+            </div>-->
             <div class="follow-us">
                 <h4> Follow us on </h4>
                 <hr>
-                <ul>
-                    <li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
+                <ul class="contact_section_links_container">
+                    <!--li><a href="https://www.facebook.com/bitsacm/"> <img src="./media/facebook.png" alt="facebook"></a></li>
                     <li><a href="https://twitter.com/bitsacm"> <img src="./media/twitter.png" alt="twitter"></a></li>
                     <li><a href="https://github.com/bitsacm"><img src="./media/github-dark.png" alt=""></a></li>
-                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>
+                    <li><a href="https://bitsacm.github.io/"> <img src="./media/blogger.png" alt="blog"></a></li>-->
                 </ul>
                 <hr>
             </div>
             <div class="contact-us">
-                <div>
-                    <h4> Where to find us </h4>
+                <div class="whereToFindUs">
+                    <!--<h4> Where to find us </h4>
                     <p><img src="./media/blue-location.png" height="16px" width="16px" alt=""> BITS Pilani, Vidyavihar
                         Campus, Pilani, Rajasthan, 333031 </p>
-                    <hr>
+                    <hr>-->
                 </div>
-                <div>
-                    <h4> Email us at </h4>
+                <div class="emailUs">
+                    <!--<h4> Email us at </h4>
                     <a class="email-link" href="mailto:bitsacm.acm@gmail.com">
                         <p> <img src="./media/gmail-logo.png" alt=""> bitsacm.acm@gmail.com </p>
-                    </a>
+                    </a>-->
                 </div>
             </div>
         </div>
 
     </div>
 </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="{% static 'js/page_data/index.js' %}"></script>
+    <script src="{% static 'js/page.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script defer src="{% static 'js/main.js' %}"></script>
 
 </html>

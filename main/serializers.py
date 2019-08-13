@@ -30,15 +30,21 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
         return "api/retrieve/description/" + str(obj.pk)
 
     def get_form_fields(self, obj):
-        form_fields = []
-        if obj.description_title:
-            form_fields.append(['description_title', 'text'])
-        if obj.description_content:
-            form_fields.append(['description_content', 'textarea'])
-        if obj.description_readmore:
-            form_fields.append(['description_readmore', 'textarea'])
-        # if obj.description_image:
-        form_fields.append(['description_image', 'file'])
+        form_fields = [
+            ['description_title', 'text'],
+            ['description_content', 'textarea'],
+            ['description_readmore', 'textarea'],
+            ['embedded_url', 'text'],
+            ['description_image', 'file']
+        ]
+        # if obj.description_title:
+        #     form_fields.append(['description_title', 'text'])
+        # if obj.description_content:
+        #     form_fields.append(['description_content', 'textarea'])
+        # if obj.description_readmore:
+        #     form_fields.append(['description_readmore', 'textarea'])
+        # # if obj.description_image:
+        # form_fields.append(['description_image', 'file'])
         return form_fields
 
     def get_accordion_name(self, obj):
@@ -53,11 +59,10 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         params = self.context['request'].get_full_path().split("/") # parsing request url to get page and position lol
-        print(params)
         page_url = params[4]
         position = params[5]
-        print(page_url)
         page = Page.objects.get(page_url=page_url)
+        print(validated_data)
         return Description.objects.create(page=page, position=position, **validated_data)
 
 
