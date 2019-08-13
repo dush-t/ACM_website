@@ -101,7 +101,7 @@ const configureAddBtn = (des_position, formFields, endpoint, type) => {
 }
 
 
-const makeAccordions = async (endpoint, position) => {
+const makeAccordions = async (endpoint, position=null) => {
     fetchData(endpoint)
         .then(async (data) => {
             const accordionContainer = document.querySelector('#cms-main');

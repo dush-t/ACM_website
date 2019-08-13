@@ -56,6 +56,7 @@ function getAccordion(url) {
         url: url,
         data: {},
         success: function (data) {
+            console.log(url);
             let accordionContainer = document.querySelectorAll("#cms-main")[0];
             accordionContainer.innerHTML = "";
             let len = data.length;
@@ -103,7 +104,6 @@ function createAccordion(accData, accordionIndex, url) {
 
 
     accordionTab.appendChild(accordionControl);
-    // accordionTab.setAttribute("onclick", "openAccordion(" + accordionIndex + ")");
     accordionTab.addEventListener('click', () => {
         openAccordion(accordionIndex);
     })
@@ -205,7 +205,6 @@ function openAccordion(count) {
 }
 
 function deleteAccordion(e, api_endpoint, url) {
-    // console.log(e, api_endpoint);
     $.ajax({
         type: 'DELETE',
         url: api_endpoint,
@@ -214,7 +213,8 @@ function deleteAccordion(e, api_endpoint, url) {
         },
         success: function () {
             alert('Deleted Successfully');
-            getAccordion(url);
+            // getAccordion(url);
+            makeAccordions(url);
         }
     });
 }
@@ -270,7 +270,6 @@ function createAddAccordion(data, url) {
                 currentData[formFields[flen - i - 1][0]] = currentField.lastChild.innerHTML;
             }
         }
-        // currentData['csrfmiddlewaretoken'] = csrf;
 
         var json_data = JSON.stringify(currentData);
         console.log(JSON.parse(JSON.stringify(currentData)));
