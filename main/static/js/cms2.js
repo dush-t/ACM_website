@@ -91,9 +91,9 @@ const configureAddBtn = (des_position, formFields, endpoint, type) => {
 
     // PICKING UP CODE FROM cms.js. I don't want an SMS-type front-end bug here.
     $('#add-button').off('click');
-    $('#add-button').on('click', function () {
+    $('#add-button').on('click', async function () {
         // createAddAccordion(formFields, endpoint+`/${des_position}`);
-        postData(endpoint+`/${des_position}`, {
+        await postData(endpoint+`/${des_position}`, {
             ...newDescriptionTemplate
         });
         makeAccordions(endpoint+`/${des_position}`, des_position);
