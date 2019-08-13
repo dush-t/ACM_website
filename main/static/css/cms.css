@@ -24,7 +24,6 @@ body {
     display: flex;
     justify-content: center;
     font-size: 2.75em;
-    text-decoration: underline;
 }
 
 .side-bar > .sidenav-entries {
@@ -77,8 +76,7 @@ div.accordion > div:hover {
     color: #25274D;
     margin-left: 50px;
     font-size: 2.75em;
-    text-decoration: underline;
-    font-style: italic;
+    /* Mudit = idiot */
 }
 
 .content-wrapper {
@@ -221,14 +219,12 @@ div.accordion > div:hover {
 
     .side-bar > #prof-name {
         font-size: 2.75em;
-        text-decoration: underline;
-        font-style: italic;
+        /* Mudit = idiot */
     }
 
     .header > span {
         font-size: 2.75em;
-        text-decoration: underline;
-        font-style: italic;
+        /* Mudit = idiot */
     }
 }
 
