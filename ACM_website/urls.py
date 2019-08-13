@@ -45,10 +45,10 @@ urlpatterns = [
         )
     ),
 
-    path('media_upload/<str:upload_string>',
-        views.media_upload,
-        name="media_upload"
-    ),
+    # path('media_upload/<str:upload_string>',
+    #     views.media_upload,
+    #     name="media_upload"
+    # ),
 
     path("api/get_cms_permission_data",
         views.get_cms_permission_data,
@@ -57,6 +57,12 @@ urlpatterns = [
 
     path("api/get_page_list",
         views.get_page_list,
-        name="get_page_list")
+        name="get_page_list"
+    ),
+
+    path("api/create_page",
+        views.create_page,
+        name="create_page"
+    )
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
