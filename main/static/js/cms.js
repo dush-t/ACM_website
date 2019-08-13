@@ -88,13 +88,13 @@ function createAccordion(accData, accordionIndex, url) {
 
     let accordionControl = document.createElement('div');
     let deleteEle = document.createElement("span");
-    deleteEle.innerHTML = 'Delete'
+    // deleteEle.innerHTML = 'Delete'
     deleteEle.className = 'glyphicon glyphicon-trash';
     deleteEle.addEventListener('click', (e) => {
         deleteAccordion(e, accData.api_endpoint, url);
     });
     accordionControl.appendChild(deleteEle);
-
+    accordionControl.className += 'accordionControl';
 
     let plusSign = document.createElement("span");
     plusSign.className = 'accordion-plus-sign';
@@ -114,30 +114,38 @@ function createAccordion(accData, accordionIndex, url) {
     formPanel.className = "panel";
     for (let i = 0; i < formFields.length; i++) {
         let formRow = document.createElement("div");
-        let fieldName = document.createTextNode(formFields[i][0] + ": ");
-        formRow.appendChild(fieldName);
+        formRow.className += 'form-group';
+        let label = document.createElement('label');
+        let fieldName = document.createTextNode(formFields[i][0]);
+        label.appendChild(fieldName);
+        formRow.appendChild(label);
 
         if (formFields[i][1] == "text") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
             fieldEditor.setAttribute("value", accData[formFields[i][0]]);
+            fieldEditor.className += 'form-control';
             formRow.appendChild(fieldEditor);
 
         } else if (formFields[i][1] == "textarea") {
             let fieldEditor = document.createElement(formFields[i][1]);
             fieldEditor.innerHTML = accData[formFields[i][0]];
+            fieldEditor.className += 'form-control form-control-lg';
+            fieldEditor.rows = "5";
+            formRow.style.width = '100%';
             formRow.appendChild(fieldEditor);
 
         } else if (formFields[i][1] == "file") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
             fieldEditor.setAttribute("value", accData[formFields[i][0]]);
+            fieldEditor.className += 'form-control';
             formRow.appendChild(fieldEditor);
         }
         formPanel.appendChild(formRow);
     }
     let submitButton = document.createElement("button");
-
+    submitButton.className += 'btn btn-primary';
 
     submitButton.appendChild(document.createTextNode("Submit"));
     formPanel.appendChild(submitButton);
@@ -204,6 +212,11 @@ function openAccordion(count) {
     }
 }
 
+function closeAccordion(count) {
+    document.querySelectorAll(".accordion .accordion-plus-sign")[count].innerHTML = "+";
+    document.querySelectorAll(".panel")[count].style.display = "none";
+}
+
 function deleteAccordion(e, api_endpoint, url) {
     $.ajax({
         type: 'DELETE',
@@ -230,27 +243,37 @@ function createAddAccordion(data, url) {
     formPanel.style.display = 'flex';
     for (let i = 0; i < formFields.length; i++) {
         let formRow = document.createElement("div");
+        formRow.className += 'form-group';
+        let label = document.createElement('label');
         let fieldName = document.createTextNode(formFields[i][0] + ": ");
-        formRow.appendChild(fieldName);
+        label.appendChild(fieldName);
+        formRow.appendChild(label);
+        
         if (formFields[i][1] == "text") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
             fieldEditor.setAttribute("value", '');
+            fieldEditor.className += 'form-control';
             formRow.appendChild(fieldEditor);
         } else if (formFields[i][1] == "textarea") {
             let fieldEditor = document.createElement(formFields[i][1]);
             fieldEditor.innerHTML = '';
+            fieldEditor.className += 'form-control form-control-lg';
+            fieldEditor.rows = "5";
+            formRow.style.width = '100%';
             formRow.appendChild(fieldEditor);
         } else if (formFields[i][1] == "file") {
             let fieldEditor = document.createElement("input");
             fieldEditor.setAttribute("type", formFields[i][1]);
             fieldEditor.setAttribute("value", '');
+            fieldEditor.className += 'form-control';
             formRow.appendChild(fieldEditor);
         }
         formPanel.appendChild(formRow);
     }
 
     let submitButton = document.createElement("button");
+    submitButton.className += 'btn btn-primary';
     submitButton.appendChild(document.createTextNode("Submit"));
     formPanel.appendChild(submitButton);
     formContainer.appendChild(formPanel);
