@@ -67,6 +67,9 @@ fetchData("/api/get_page_list")
 const getTabs = async (des_endpoint) => {
     const tabContainer = document.querySelector(".existing-tab");
     tabContainer.innerHTML = "";
+    const pageName = des_endpoint.split('/').slice(-1)[0]
+    console.log(pageName)
+    const positions = positionData[pageName]
     let len = Object.keys(positions).length;
     for (let i = 1; i <= len; i++) {
 
