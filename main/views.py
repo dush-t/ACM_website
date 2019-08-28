@@ -24,7 +24,7 @@ import json
 
 def index(request):
     page_url = "/api/list/description/index"
-    return render(request, 'main/index.html', {'page_url': page_url})
+    return render(request, 'main/templates/index.html', {'page_url': page_url})
 
 
 @login_required(login_url='/sign_in')
