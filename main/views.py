@@ -27,6 +27,7 @@ def index(request):
     return render(request, 'main/index.html', {'page_url': page_url})
 
 
+@login_required(login_url='/sign_in')
 def render_cms_portal(request):
     return render(request, 'main/cms/cms.html')
 

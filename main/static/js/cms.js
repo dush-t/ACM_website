@@ -1,5 +1,6 @@
 // xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
 document.onload = loadCMS();
+let csrf = document.getElementById("csrf").innerHTML;
 
 function loadCMS() {
 
@@ -70,8 +71,6 @@ function getAccordion(url) {
         }
     });
 }
-
-var csrf = document.getElementById("csrf").innerHTML;
 // console.log(csrf);
 
 // YIKES.
@@ -178,6 +177,9 @@ function createAccordion(accData, accordionIndex, url) {
         // Send data to the UPDATE endpoint of the object (description/proftab) in question.
         fetch(accData.api_endpoint, {
             method: 'PUT',
+            headers: {
+                "X-CSRFToken": csrf
+            },
             body: formData
         }).then((response) => {
             alert('done');
