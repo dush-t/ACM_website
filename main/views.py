@@ -31,15 +31,14 @@ def index(request):
 def render_cms_portal(request):
     return render(request, 'main/cms/cms.html')
 
-# Create your views here.
-
 
 class DescriptionViewSet(viewsets.ModelViewSet):
 
     serializer_class = DescriptionSerializer
-    # permission_classes = (DescriptionEditPerm,)
 
-    def get_queryset(self):  # Used with list method
+    # Get list of querysets filtered
+    # using url arguments
+    def get_queryset(self):
         page_url = self.kwargs['page_url']
         position = self.kwargs['position']
         page = Page.objects.get(page_url=page_url)
@@ -50,10 +49,10 @@ class DescriptionViewSet(viewsets.ModelViewSet):
                 page=page, position=position)
         return descriptions
 
-    def get_object(self):  # Used with retrieve method
+    # Get specific object
+    def get_object(self):
         pk = int(self.kwargs['pk'])
         description = Description.objects.get(pk=pk)
-        # self.check_object_permissions(self.request, description)
         return description
 
 
@@ -89,6 +88,7 @@ def sign_in(request):
         return render(request, 'main/cms/sign_in.html')
 
 
+@login_required
 def get_cms_permission_data(request):
     if request.user.level == 1:
         current_prof = Professor.objects.get(user=request.user)
@@ -121,6 +121,7 @@ def get_cms_permission_data(request):
         page_list.append(page_data_list)
 
     return JsonResponse({'page_list': page_list, 'fixed_fields': fixed_fields})
+
 
 
 def get_template_classes(request, template_code):
@@ -157,6 +158,7 @@ def get_page_data_list(request, key):
     return JsonResponse({"template_classes": template_classes})
 
 
+@login_required
 def create_page(request):
     page_url = str(request.POST.get("page_url"))
     page_id = str(request.POST.get("page_id"))
@@ -165,6 +167,8 @@ def create_page(request):
 
     Page.objects.create(page_url=page_url, page_id=page_id,
                         page_description=page_description, template=template)
+
+    return JsonResponse({}, status=201)
     
 
 

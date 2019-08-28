@@ -18,6 +18,7 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
             'api_endpoint'
         )
 
+
     def create(self, validated_data):
         params = self.context['request'].get_full_path().split("/") # parsing request url to get page and position
         page_url = params[4]
@@ -26,16 +27,16 @@ class DescriptionSerializer(serializers.HyperlinkedModelSerializer):
         print(validated_data)
         return Description.objects.create(page=page, position=position, **validated_data)
 
+
     def update(self, instance, validated_data):
         try:
-            instance.description_image = validated_data.description_image
+            instance.description_image = validated_data.get('description_image', instance.description_image)
         except:
-            print("No Image")
             pass
-        instance.description_title = validated_data.description_title
-        instance.description_content = validated_data.description_content
-        instance.description_readmore = validated_data.description_readmore
-        instance.embedded_url = validated_data.embedded_url
+        instance.description_title = validated_data.get('description_title', instance.description_title)
+        instance.description_content = validated_data.get('description_content', instance.description_content)
+        instance.description_readmore = validated_data.get('description_readmore', instance.description_readmore)
+        instance.embedded_url = validated_data.get('embedded_url', instance.embedded_url)
         instance.save()
         return instance
 

@@ -71,7 +71,8 @@ function getAccordion(url) {
         }
     });
 }
-// console.log(csrf);
+
+
 
 // YIKES.
 function createAccordion(accData, accordionIndex, url) {
@@ -168,7 +169,10 @@ function createAccordion(accData, accordionIndex, url) {
                 formData.append(formFields[flen - i - 1][0], $(currentField.lastChild).val());
 
             } else if (currentField.lastChild.type == "file") {
-                formData.append("description_image", currentField.lastChild.files[0]);
+                const imageFile = currentField.lastChild.files[0];
+                if (imageFile) {
+                    formData.append("description_image", currentField.lastChild.files[0]);
+                }
 
             } else {
                 formData.append(formFields[flen - i - 1][0], currentField.lastChild.innerHTML);
